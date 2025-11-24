@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "Find ETF2L",
+  "version": "1.0",
+  "description": "Simple extension to find the ETF2L profile of a linked Steam profile",
+
+  "permissions": ["storage", "tabs"],
+
+  "background": {
+    "service_worker": "../shared/background.js"
+  },
+
+  "action": {
+    "default_title": "Open ETF2L Profile"
+  },
+
+  "content_scripts": [
+    {
+      "matches": [
+        "https://steamcommunity.com/profiles/*",
+        "https://steamcommunity.com/id/*"
+      ],
+      "js": ["../shared/content_script.js"]
+    }
+  ],
+
+  "options_page": "../shared/options.html"
+}
