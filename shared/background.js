@@ -1,4 +1,4 @@
-chrome.action.onClicked.addListener(() => {
+chrome.action.onClicked.addEventListener(() => {
     if (chrome.runtime.lastDetectedSteamID) {
         chrome.tabs.create({
             url: `https://etf2l.org/search/${chrome.runtime.lastDetectedSteamID}/`,
@@ -7,7 +7,7 @@ chrome.action.onClicked.addListener(() => {
     }
 });
 
-chrome.runtime.onMessage.addListener((msg) => {
+chrome.runtime.onMessage.addEventListener((msg) => {
     if (msg.type === "steamIdDetected") {
         chrome.storage.local.get({ autoOpen: true }, (data) => {
             if (data.autoOpen) {
@@ -22,7 +22,7 @@ chrome.runtime.onMessage.addListener((msg) => {
     }
 });
 
-chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
+chrome.runtime.onMessage.addEventListener((msg, sender, sendResponse) => {
     if (msg.type === "resolveVanity") {
         chrome.storage.local.get("steamApiKey", (data) => {
             const key = data.steamApiKey;
